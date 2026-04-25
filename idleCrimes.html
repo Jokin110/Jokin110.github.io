@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Idle Crimes Tycoon - Jokin Oteiza Ollo</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%2318bfef' d='M480 128H32C14.33 128 0 142.3 0 160v192c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32V160C512 142.3 497.7 128 480 128zM144 288h-32v32c0 8.836-7.164 16-16 16s-16-7.164-16-16v-32H48c-8.836 0-16-7.164-16-16s7.164-16 16-16h32v-32c0-8.836 7.164-16 16-16s16 7.164 16 16v32h32c8.836 0 16 7.164 16 16S152.8 288 144 288zM352 288c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S369.7 288 352 288zM432 224c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S449.7 224 432 224z'/%3E%3C/svg%3E" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+
+				<header id="header">
+						<a href="index.html" class="logo">Back to Portfolio</a>
+					</header>
+
+				<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="about.html">About Me</a></li>
+							<li><a href="assets/CV-JokinOteizaOllo.pdf" target="_blank">Resume (PDF)</a></li>
+							<li class="active"><a href="#">Idle Crimes Tycoon - Mafia Sim</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Jokin110" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<div id="main">
+
+						<section class="post">
+							<header class="major">
+								<span class="date">April 2024 - July 2024</span>
+								<h1>Idle Crimes Tycoon - Mafia Sim</h1>
+								<ul class="tech-tags">
+									<li>Unity</li>
+									<li>C#</li>
+									<li>Team of 3</li>
+									<li>Published (Google Play)</li>
+								</ul>
+							</header>
+							
+							<div class="screenshot-carousel">
+								<img src="images/getRich.png" alt="Idle Crimes Gameplay 1" />
+								<img src="images/takeControl.png" alt="Idle Crimes Gameplay 2" />
+								<img src="images/character.png" alt="Idle Crimes Gameplay 3" />
+								<img src="images/unlockCrimes.png" alt="Idle Crimes Gameplay 4" />
+								<img src="images/upgradeCity.png" alt="Idle Crimes Gameplay 5" />
+								<img src="images/police.png" alt="Idle Crimes Gameplay 6" />
+								<img src="images/radio.png" alt="Idle Crimes Gameplay 7" />
+								<img src="images/moneyLaundering.png" alt="Idle Crimes Gameplay 8" />
+							</div>
+							<p class="video-caption">Swipe or scroll to view gameplay screenshots.</p>
+							
+							<ul class="actions fit">
+								<li><a href="https://play.google.com/store/apps/details?id=com.CroquetaCreative.IdleCrimes" class="button fit">Download on Google Play</a></li>
+							</ul>
+
+							<hr />
+
+							<h2>Project Overview</h2>
+							<p>Idle Crimes Tycoon - Mafia Sim is an idle management game where the primary objective is to build a criminal empire from the ground up. Set in a vibrant city inspired by 1980s Miami, players assume the role of a rising gang leader tasked with generating revenue, acquiring new territories, and taking control from rival gangs. The game is commercially published and currently available on Google Play.</p>
+							
+							<hr />
+
+							<h2>Core Gameplay & Mechanics</h2>
+							<p>The game relies heavily on strategic decision-making, resource management, and automated progression. The core mechanics include:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Tycoon Economy & Upgrades:</strong> Players invest their funds into various criminal activities, such as robberies, smuggling, and legal fronts, across different neighborhoods. Each activity has its own automated progress cycle, and upgrades dynamically reduce cycle times while increasing overall payouts.</li>
+								<li><strong>Money Laundering Minigame:</strong> A risk-reward mechanic where players entrust funds to a "Lawyer" character. After a set real-time duration, the money is returned multiplied by a random factor between 1 and 3, which can be further improved via global upgrades.</li>
+								<li><strong>Police Raids:</strong> A recurring event that occurs every three days, threatening the player's economy. To prevent a severe 25% income penalty, players must stockpile secondary resources (Gangsters and Drug Power) to fend off the raid.</li>
+								<li><strong>Prestige System:</strong> To overcome late-game economic hurdles, players can "prestige", completely resetting their empire's progress in exchange for massive, permanent income multipliers that speed up subsequent playthroughs.</li>
+								<li><strong>Offline Progression:</strong> The game mathematically calculates the time elapsed between sessions, automatically generating and rewarding the player with accumulated wealth upon their return to encourage satisfying, quick check-ins.</li>
+							</ul>
+
+							<hr />
+
+							<h2>My Contributions & Technical Implementation</h2>
+							<p>As the sole Unity programmer on a three-person team alongside two artists, I architected and implemented the entirety of the game's codebase, transforming the design into a commercially published product:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Gameplay & Systems Architecture:</strong> Programmed the entirety of the tycoon economy, including the automated progress bars, the offline time-calculation algorithms, and the math dictating stat growth and prestige multipliers. Collaborated closely on the foundational game design to ensure the mechanics translated into engaging code.</li>
+								<li><strong>User Interface Framework:</strong> Built the entirely UI-driven game loop. Developed complex navigation menus, upgrade interfaces and responsive progress sliders to provide clear, real-time feedback.</li>
+								<li><strong>Encrypted Save System:</strong> Designed and implemented a highly secure JSON save system to handle persistent session data. This system safely tracks offline timestamps and prevents players from easily exploiting local files to cheat the economy.</li>
+								<li><strong>Monetization & Unity Ads:</strong> Integrated the Unity Ads SDK to establish a live revenue stream. Engineered both skippable Interstitial ads and opt-in Rewarded ads, which grant players temporary income multipliers or time skips.</li>
+								<li><strong>Publishing & LiveOps:</strong> Led the Android build optimization process and managed the entire Google Play Console publishing pipeline. Post-launch, I have been responsible for maintaining the app and deploying updates when required.</li>
+							</ul>
+
+							<div class="pagination" style="justify-content: space-between; display: flex; width: 100%; margin-top: 4rem;">
+								<a href="theLastCrusade.html" class="previous">Previous Project</a>
+								<a href="anima.html" class="next">Next Project</a>
+							</div>
+						</section>
+
+					</div>
+
+				<footer id="footer">
+						<section class="split contact" style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap;">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:jokinoteiza@gmail.com">jokinoteiza@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Location</h3>
+								<p>Iruña, Nafarroa</p>
+							</section>
+							<section>
+								<h3>Social Profiles</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Jokin110" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<div id="copyright">
+						<ul><li>&copy; Jokin Oteiza Ollo</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>FFT Ocean Simulation - Jokin Oteiza Ollo</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%2318bfef' d='M480 128H32C14.33 128 0 142.3 0 160v192c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32V160C512 142.3 497.7 128 480 128zM144 288h-32v32c0 8.836-7.164 16-16 16s-16-7.164-16-16v-32H48c-8.836 0-16-7.164-16-16s7.164-16 16-16h32v-32c0-8.836 7.164-16 16-16s16 7.164 16 16v32h32c8.836 0 16 7.164 16 16S152.8 288 144 288zM352 288c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S369.7 288 352 288zM432 224c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S449.7 224 432 224z'/%3E%3C/svg%3E" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+
+				<header id="header">
+						<a href="index.html" class="logo">Back to Portfolio</a>
+					</header>
+
+				<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="about.html">About Me</a></li>
+							<li><a href="assets/CV-JokinOteizaOllo.pdf" target="_blank">Resume (PDF)</a></li>
+							<li class="active"><a href="#">FFT Ocean Simulation</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Jokin110" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<div id="main">
+
+						<section class="post">
+							<header class="major">
+								<span class="date">In Development</span>
+								<h1>FFT Ocean Simulation</h1>
+								<ul class="tech-tags">
+									<li>DirectX 11</li>
+									<li>C++</li>
+									<li>HLSL</li>
+									<li>Solo Project</li>
+								</ul>
+							</header>
+
+							<div class="details-video-frame">
+								<video src="images/oceanSimulation.mp4" autoplay loop muted playsinline disablePictureInPicture></video>
+							</div>
+
+							<ul class="actions fit">
+								<li><a href="https://github.com/Jokin110/OceanSimulation" class="button fit">View Source Code</a></li>
+							</ul>
+
+							<hr />
+
+							<h2>Project Overview</h2>
+							<p>This project is a real-time ocean surface simulation driven by oceanographic spectra and Fast Fourier Transforms (FFT). Built from scratch without the use of commercial game engines, the primary goal was to master low-level graphics programming, custom rendering pipelines and GPGPU compute architecture.</p>
+							
+							<hr />
+
+							<h2>Technical Architecture & Implementation</h2>
+							<p>The simulation pipeline is built upon several advanced mathematical and rendering concepts:</p>
+							<ul>
+								<li><strong>Low-Level API:</strong> Engineered the custom rendering engine using DirectX 11 and C++ to ensure complete control over the graphics pipeline, memory management and shader execution.</li>
+								<li><strong>Mathematical Foundations:</strong> Implemented J. Tessendorf's highly regarded <em>Simulating Ocean Water</em> paper to achieve physically plausible wave behaviors.</li>
+								<li><strong>Oceanographic Spectra:</strong> Utilized the JONSWAP spectrum to dynamically generate initial ocean states in the frequency domain, directly controlled by physical parameters such as wind speed, fetch length and direction.</li>
+								<li><strong>GPGPU Compute:</strong> Used Compute Shaders to execute the initial spectrum, Fast Fourier Transform (FFT) and displacement and slope calculation algorithms, highly parallelizing the calculation and conversion of frequency domain data into spatial heightmaps and normal maps in real-time.</li>
+								<li><strong>Dynamic Tessellation:</strong> Implemented hardware tessellation with dynamic Level of Detail (LOD). The Hull and Domain shaders adaptively subdivide the ocean plane based on camera distance before displacing vertices using the FFT-generated textures.</li>
+								<li><strong>Wave Cascading:</strong> Generated four independent ocean surface textures with varying patch sizes. Summing these cascades simulates a vast range of frequencies, from massive swells to high-frequency ripples, while effectively eliminating visual tiling artifacts in the distance.</li>
+								<li><strong>Real-Time Controls:</strong> Integrated ImGui to allow real-time manipulation of simulation parameters, rasterizer states and lighting colors for immediate visual feedback.</li>
+							</ul>
+
+							<hr />
+
+							<div class="details-video-frame">
+								<video src="images/oceanSimulationWild.mp4" autoplay loop muted playsinline disablePictureInPicture></video>
+							</div>
+							<p class="video-caption">By dynamically adjusting the JONSWAP spectrum parameters, such as wind speed and fetch length, the engine can simulate a vast range of sea states in real-time, from calm waters to turbulent, storm-driven swells.</p>
+							
+							<hr />
+
+							<h2>Challenges Overcome</h2>
+							<p>Building a fully custom ocean renderer from scratch presented several complex graphics programming hurdles:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Initial Spectrum Generation:</strong> Generating the initial spectrum involved solving complex equations where a single floating-point anomaly could corrupt the entire pipeline. A notable edge-case arose with the HLSL <code>tanh</code> function, where extremely high inputs produced <code>NaN</code> (Not-a-Number) values that poisoned the resulting textures. Leveraging RenderDoc to step through the texture generation allowed me to isolate the anomaly and patch the math errors safely.</li>
+								<li><strong>T-Junctions & Mesh Tearing:</strong> Initially, I calculated the dynamic tessellation factor based on the distance from the camera to the center of each quad patch. This caused neighboring patches to evaluate different LOD levels, creating visible gaps (T-junctions) in the mesh. Shifting the tessellation calculation to evaluate the camera's distance from the patch <em>edges</em> ensured seamless LOD transitions and completely closed the mesh.</li>
+								<li><strong>Tiling Artifacts:</strong> A single FFT grid mathematically repeats itself, creating noticeable, artificial tiling on the horizon. By combining four distinct cascades with prime-number patch sizes (2003m, 509m, 101m, and 23m), the repetition frequencies were desynchronized. This entirely masked the tiling, resulting in an infinite, non-repeating ocean surface.</li>
+								<li><strong>Pipeline Debugging:</strong> The simulation relies on a sequential compute shader pipeline. A visual artifact in the final render could originate from an error in any intermediate pass. Integrating RenderDoc into the workflow was crucial; capturing frames and inspecting the Unordered Access Views (UAVs) at each stage allowed me to surgically identify which mathematical step of the pipeline was failing.</li>
+							</ul>
+							
+							<hr />
+
+							<h2>Future Roadmap & Next Steps</h2>
+							<p>This simulation is an ongoing project. My immediate roadmap focuses on elevating the visual fidelity and expanding the engine to support interactive physics:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Physically Based Rendering (PBR):</strong> Currently, the ocean surface utilizes a basic Blinn-Phong reflection model. The next major milestone involves migrating to a fully Physically Based Rendering pipeline. This will include implementing BRDF and accurate Fresnel equations to properly blend deep-water subsurface scattering with real-time sky environment reflections.</li>
+								<li><strong>Advanced Foam Rendering:</strong> Foam accumulation at wave peaks is currently calculated mathematically using the Jacobian determinant of the displacement map combined with exponential decay. While the underlying simulation logic works, the visual output requires refinement. Future iterations will focus on improving the foam blending pass so whitecaps look natural rather than painted on.</li>
+								<li><strong>Interactive Buoyancy Physics:</strong> To transition this project from a purely visual simulation into a game-ready system, I plan to implement rigid-body buoyancy. This will require engineering a highly performant system to sample the exact wave height and surface normal at any given (X, Z) coordinate, allowing objects to interactively float and pitch with the waves.</li>
+								<li><strong>Low-Level Optimization:</strong> Once the core feature set is fully implemented, the final phase will focus heavily on GPU profiling and optimization. I plan to rigorously profile and improve the Compute Shaders, refine the Hull Shader LOD logic and optimize the Domain and Pixel Shaders, ensuring the simulation runs well within strict real-time rendering budgets.</li>
+							</ul>
+
+							<hr />
+
+							<h2>Core Implementation Highlight: Dispatching the Compute Shader</h2>
+							<p>Generating the initial frequency spectrum requires binding specific constant buffers and Unordered Access Views (UAVs) to the pipeline immediately before dispatching the compute shader. Because the thread group size is defined as (16, 16, 1), the dispatch dimensions must dynamically adapt to fit the chosen texture resolution. This dispatch logic executes across all four cascades whenever the environmental simulation settings are modified.</p>
+
+							<pre><code class="language-cpp">void OceanComputeManager::GenerateInitialSpectrum(bool initial)
+{
+    RecalculateFrequencyFilters();
+
+    ID3D11DeviceContext* context = D3D11Application::GetInstance().GetDeviceContext();
+
+    context->CSSetShader(m_InitialSpectrumComputeShader, nullptr, 0);
+
+    InitializeOceanSimulationSettings(initial);
+
+    m_OceanSimulationSettingsBufferData.m_OceanTextureSize = m_OceanSimulationCascadeSettings.m_OceanTextureSize;
+
+    // Calculate physical parameters
+    m_OceanSimulationSettingsBufferData.m_PeakFrequency = pow(22.0f * m_OceanSimulationSettingsBufferData.m_GravitationalConstant * m_OceanSimulationSettingsBufferData.m_GravitationalConstant / max(m_OceanSimulationSettingsBufferData.m_AverageWindSpeed * m_OceanSimulationSettingsBufferData.m_FetchLength, 0.01f), 1.0f / 3.0f);
+    m_OceanSimulationSettingsBufferData.m_Alpha = 0.076f * pow(m_OceanSimulationSettingsBufferData.m_AverageWindSpeed * m_OceanSimulationSettingsBufferData.m_AverageWindSpeed / (m_OceanSimulationSettingsBufferData.m_GravitationalConstant * m_OceanSimulationSettingsBufferData.m_FetchLength), 0.22f);
+    m_OceanSimulationSettingsBufferData.m_WindAngle = m_OceanSimulationSettingsBufferData.m_WindDirection * (PI / 180.0f); // Convert to radians
+
+    m_OceanSimulationSettingsBufferData.m_RandomSeed = rand();
+
+    // Dispatch the compute shader for each cascade
+    for (int i = 0; i < CASCADE_COUNT; i++)
+    {
+        m_OceanSimulationSettingsBufferData.m_PatchSize = m_OceanSimulationCascadeSettings.m_OceanPatchSize[i];
+        m_OceanSimulationSettingsBufferData.m_LowPassFilter = m_LowPassFilters[i];
+        m_OceanSimulationSettingsBufferData.m_HighPassFilter = m_HighPassFilters[i];
+        m_OceanSimulationSettingsBufferData.m_CascadeAmplitude = m_OceanSimulationCascadeSettings.m_CascadeAmplitudes[i];
+
+        context->UpdateSubresource(m_d3dOceanSimulationSettingsBuffer, 0, nullptr, &m_OceanSimulationSettingsBufferData, 0, 0);
+        context->CSSetConstantBuffers(0, 1, &m_d3dOceanSimulationSettingsBuffer);
+
+        context->CSSetUnorderedAccessViews(0, 1, &m_InitialSpectrumUAV[i], nullptr);
+
+        // Adapt the dispatch groups to the texture resolution
+        UINT groupsX = m_OceanSimulationCascadeSettings.m_OceanTextureSize / 16;
+        UINT groupsY = m_OceanSimulationCascadeSettings.m_OceanTextureSize / 16;
+        context->Dispatch(groupsX, groupsY, 1);
+
+        // Unbind UAV to prevent read/write hazards
+        ID3D11UnorderedAccessView* nullUAV[1] = { nullptr };
+        context->CSSetUnorderedAccessViews(0, 1, nullUAV, nullptr);
+    }
+}</code></pre>
+
+							<div class="pagination" style="justify-content: space-between; display: flex; width: 100%; margin-top: 4rem;">
+								<a href="anima.html" class="previous">Previous Project</a>
+								<a href="theLastCrusade.html" class="next">Next Project</a>
+							</div>
+						</section>
+
+					</div>
+
+				<footer id="footer">
+						<section class="split contact" style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap;">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:jokinoteiza@gmail.com">jokinoteiza@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Location</h3>
+								<p>Iruña, Nafarroa</p>
+							</section>
+							<section>
+								<h3>Social Profiles</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Jokin110" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<div id="copyright">
+						<ul><li>&copy; Jokin Oteiza Ollo</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hlsl.min.js"></script>
+	</body>
+</html>

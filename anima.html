@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Anima - Jokin Oteiza Ollo</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%2318bfef' d='M480 128H32C14.33 128 0 142.3 0 160v192c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32V160C512 142.3 497.7 128 480 128zM144 288h-32v32c0 8.836-7.164 16-16 16s-16-7.164-16-16v-32H48c-8.836 0-16-7.164-16-16s7.164-16 16-16h32v-32c0-8.836 7.164-16 16-16s16 7.164 16 16v32h32c8.836 0 16 7.164 16 16S152.8 288 144 288zM352 288c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S369.7 288 352 288zM432 224c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S449.7 224 432 224z'/%3E%3C/svg%3E" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+
+				<header id="header">
+						<a href="index.html" class="logo">Back to Portfolio</a>
+					</header>
+
+				<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="about.html">About Me</a></li>
+							<li><a href="assets/CV-JokinOteizaOllo.pdf" target="_blank">Resume (PDF)</a></li>
+							<li class="active"><a href="#">Anima</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Jokin110" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<div id="main">
+
+						<section class="post">
+							<header class="major">
+								<span class="date">March 2022 - June 2022</span>
+								<h1>Anima</h1>
+								<ul class="tech-tags">
+									<li>Unity</li>
+									<li>C#</li>
+									<li>Team of 5</li>
+									<li>Available on Itch.io</li>
+									<li>Best Elevator Pitch</li>
+								</ul>
+							</header>
+							
+							<div class="details-video-frame">
+								<video src="images/animaTrailer.mp4" controls playsinline disablePictureInPicture></video>
+							</div>
+							<p class="video-caption">Official gameplay trailer presented at the Universidad San Jorge Game of the Year Gala, where <em>Anima</em> was awarded "Best Elevator Pitch".</p>
+							
+							<ul class="actions fit">
+								<li><a href="https://illegalstudios.itch.io/anima" class="button fit">Play Game on Itch.io</a></li>
+							</ul>
+
+							<hr />
+
+							<h2>Project Overview</h2>
+							<p>Anima is a story-driven 2D platformer set in the fictional world of Yalos, a planet ruled by six powerful Gods. The player controls Hylah, the Goddess of Feelings, on a quest to liberate the planet's inhabitants. The game is built around a unique dual-world mechanic called "The Aura", which dynamically alters both the environment and enemy behavior. The project was awarded <strong>"Best Elevator Pitch"</strong> at the Universidad San Jorge Game of the Year Gala, recognizing our team's ability to communicate our core gameplay loop and artistic vision clearly.</p>
+							
+							<hr />
+
+							<h2>Core Gameplay & The Aura Mechanic</h2>
+							<p>The game relies on a continuous risk-reward loop tied to Hylah's Aura of sadness, blending platforming, combat, and puzzle-solving:</p>
+							<ul style="text-align: justify;">
+								<li><strong>The Dual-World:</strong> Hylah is surrounded by a dark aura. Outside of it, the world is bright and full of life; inside the aura, the world reveals its true, dark nature. This aura exposes hidden platforms, secret totems required to open stone doors, and traps that cannot be seen in the light.</li>
+								<li><strong>Health as a Mechanic:</strong> The aura acts as the player's health bar. Every time Hylah takes damage, the aura expands. While a larger aura makes it easier to see hidden puzzle elements, if the darkness expands to fill the entire screen, the player dies and resets at the last checkpoint. Players can heal and shrink the aura by collecting animas dropped by defeated enemies.</li>
+								<li><strong>Dynamic Enemies:</strong> The aura physically alters the enemies. For example, the <em>Wingaz Bird</em> and the <em>Gorod Rocks</em> remain peaceful until they enter Hylah's aura, at which point the darkness corrupts them and triggers their hostile attack phases.</li>
+								<li><strong>Level Variety:</strong> The game features three distinct level types: "Progress" (traditional combat and traversal), "Puzzle" (time-attack rooms where the aura constantly grows while the player solves colored-block puzzles), and "Boss Fights" against the other Gods of Yalos.</li>
+							</ul>
+
+							<hr />
+
+							<div class="image fit project-card">
+								<img src="images/animaScreenshot.png" alt="Anima screenshot demonstrating the Aura mechanic" />
+							</div>
+							<p class="video-caption">Demonstrating the core dual-world mechanic: The Player's dark Aura has been expanded to reveal a previously hidden platform, allowing for essential progression that was impossible in the standard, lighter world.</p>
+
+							<hr />
+
+							<h2>My Contributions & Technical Implementation</h2>
+							<p>Working in a team of five, I served as one of two core gameplay programmers, taking ownership of the enemy logic, boss encounters and overall game architecture:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Combat & Enemy AI:</strong> Engineered the enemy behaviors using Finite State Machines (FSM). I programmed the logic that allows enemies to dynamically transition between "Peaceful" and "Hostile" states in real-time based on their collision overlap with the player's expanding/shrinking Aura radius.</li>
+								<li><strong>Multi-Phase Boss Encounters:</strong> Architected the complex boss fight against <em>Serfe</em>, the God of Elements. Implemented an FSM to manage his varied attack patterns, which included spawning crystal projectiles, triggering falling stalactites, raising defensive walls, and absorbing the player's ranged magic attacks.</li>
+								<li><strong>Game Design & Systems:</strong> Collaborated heavily on the foundational game design, helping to conceptualize the risk-reward nature of the Aura mechanic and how it directly ties player health to environmental puzzle-solving.</li>
+								<li><strong>User Interface & Architecture:</strong> Developed the comprehensive UI framework, tightly coupling the visual interface to the underlying game state. This included the main menus, seamless level transitions between the traversal, puzzle, and boss rooms and the underlying checkpoint respawn system.</li>
+							</ul>
+
+							<div class="pagination" style="justify-content: space-between; display: flex; width: 100%; margin-top: 4rem;">
+								<a href="idleCrimes.html" class="previous">Previous Project</a>
+								<a href="oceanSimulation.html" class="next">Next Project</a>
+							</div>
+						</section>
+
+					</div>
+
+				<footer id="footer">
+						<section class="split contact" style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap;">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:jokinoteiza@gmail.com">jokinoteiza@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Location</h3>
+								<p>Iruña, Nafarroa</p>
+							</section>
+							<section>
+								<h3>Social Profiles</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Jokin110" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<div id="copyright">
+						<ul><li>&copy; Jokin Oteiza Ollo</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

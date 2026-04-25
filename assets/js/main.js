@@ -256,3 +256,144 @@
 		}
 
 })(jQuery);
+
+/* ========================================== */
+/* Custom Sticky Nav Observer & Panel Fix     */
+/* ========================================== */
+(function($) {
+    $(function() {
+        var $window = $(window),
+            $nav = $('#nav'),
+            $body = $('body');
+
+        if ($nav.length > 0) {
+            // Listen to BOTH scroll and resize events
+            $window.on('scroll resize', function() {
+                var navBottom = $nav.offset().top + $nav.outerHeight();
+                var isDesktop = $window.width() > 980;
+
+                // 1. DESKTOP BEHAVIOR (> 980px)
+                if (isDesktop) {
+                    if ($window.scrollTop() > navBottom) {
+                        $body.addClass('is-nav-scrolled');
+                        
+                        var $navPanel = $('#navPanel');
+                        
+                        // Check if panel exists and hasn't been populated by our script yet
+                        if ($navPanel.length > 0 && !$navPanel.hasClass('desktop-populated')) {
+                            
+                            // Clone and tag our custom elements so we can track them
+                            var $clonedLinks = $nav.find('.links').clone().addClass('custom-desktop-clone');
+                            var $clonedIcons = $nav.find('.icons').clone().addClass('custom-desktop-clone');
+                            
+                            // FIX: Kept the top margin for spacing, but removed the centering 
+                            // so it naturally aligns to the left like the mobile version.
+                            $clonedIcons.css({
+                                'margin-top': '2rem'
+                            });
+
+                            $navPanel.children('nav').append($clonedLinks);
+                            $navPanel.children('nav').append($clonedIcons);
+                            
+                            // Mark as populated
+                            $navPanel.addClass('desktop-populated');
+                        }
+                    } else {
+                        $body.removeClass('is-nav-scrolled');
+                    }
+                } 
+                // 2. MOBILE BEHAVIOR (<= 980px)
+                else {
+                    // Remove our custom trigger class so the native template styling takes over
+                    $body.removeClass('is-nav-scrolled');
+                    
+                    var $navPanel = $('#navPanel');
+                    
+                    // If our script previously added custom links, remove them to prevent duplication
+                    if ($navPanel.length > 0 && $navPanel.hasClass('desktop-populated')) {
+                        $navPanel.find('.custom-desktop-clone').remove();
+                        $navPanel.removeClass('desktop-populated');
+                    }
+                }
+            });
+            
+            $window.trigger('scroll');
+        }
+    });
+})(jQuery);
+
+/* ========================================== */
+/* Video Hover Play/Reset Logic               */
+/* ========================================== */
+(function($) {
+	$(function() {
+		// When the mouse enters the project card
+		$('.project-card').on('mouseenter', function() {
+			var video = $(this).find('video.gif-img').get(0);
+			if (video) {
+				// KILL ANY PENDING PAUSE TIMERS
+				if (video.pauseTimeout) {
+					clearTimeout(video.pauseTimeout);
+					video.pauseTimeout = null;
+				}
+				
+				// Reset the video to frame 0 and play
+				video.currentTime = 0;
+				var playPromise = video.play();
+				
+				// Safely handle browser autoplay promises to prevent console errors
+				if (playPromise !== undefined) {
+					playPromise.catch(function(error) {
+						console.log("Video play interrupted safely.");
+					});
+				}
+			}
+		});
+
+		// When the mouse leaves the project card
+		$('.project-card').on('mouseleave', function() {
+			var video = $(this).find('video.gif-img').get(0);
+			if (video) {
+				// STORE THE TIMER ON THE VIDEO ITSELF
+				video.pauseTimeout = setTimeout(function() {
+					video.pause();
+				}, 500);
+			}
+		});
+	});
+})(jQuery);
+
+/* ========================================== */
+/* Screenshot Carousel Mouse Drag Logic       */
+/* ========================================== */
+const carousel = document.querySelector('.screenshot-carousel');
+if (carousel) {
+	let isDown = false;
+	let startX;
+	let scrollLeft;
+
+	carousel.addEventListener('mousedown', (e) => {
+		isDown = true;
+		carousel.classList.add('is-dragging');
+		startX = e.pageX - carousel.offsetLeft;
+		scrollLeft = carousel.scrollLeft;
+	});
+
+	carousel.addEventListener('mouseleave', () => {
+		isDown = false;
+		carousel.classList.remove('is-dragging');
+	});
+
+	carousel.addEventListener('mouseup', () => {
+		isDown = false;
+		carousel.classList.remove('is-dragging');
+	});
+
+	carousel.addEventListener('mousemove', (e) => {
+		if (!isDown) return;
+		e.preventDefault();
+		const x = e.pageX - carousel.offsetLeft;
+		const walk = (x - startX) * 2; // Multiplier makes the swipe feel faster
+		carousel.scrollLeft = scrollLeft - walk;
+	});
+}

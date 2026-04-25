@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>The Last Crusade - Jokin Oteiza Ollo</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%2318bfef' d='M480 128H32C14.33 128 0 142.3 0 160v192c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32V160C512 142.3 497.7 128 480 128zM144 288h-32v32c0 8.836-7.164 16-16 16s-16-7.164-16-16v-32H48c-8.836 0-16-7.164-16-16s7.164-16 16-16h32v-32c0-8.836 7.164-16 16-16s16 7.164 16 16v32h32c8.836 0 16 7.164 16 16S152.8 288 144 288zM352 288c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S369.7 288 352 288zM432 224c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S449.7 224 432 224z'/%3E%3C/svg%3E" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+
+				<header id="header">
+						<a href="index.html" class="logo">Back to Portfolio</a>
+					</header>
+
+				<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="about.html">About Me</a></li>
+							<li><a href="assets/CV-JokinOteizaOllo.pdf" target="_blank">Resume (PDF)</a></li>
+							<li class="active"><a href="#">The Last Crusade</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Jokin110" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<div id="main">
+
+						<section class="post">
+							<header class="major">
+								<span class="date">In Development</span>
+								<h1>The Last Crusade</h1>
+								<ul class="tech-tags">
+									<li>Unity</li>
+									<li>C#</li>
+									<li>Team of 4</li>
+									<li>Best 2D Game</li>
+								</ul>
+							</header>
+							
+							<div class="details-video-frame">
+								<video src="images/theLastCrusade.mp4" autoplay loop muted playsinline disablePictureInPicture></video>
+							</div>
+							<p class="video-caption">Visual and audio assets featured in this project were licensed by the university for educational use and were not created by the development team. My role was strictly focused on Gameplay Programming, AI and Systems Architecture.</p>
+
+							<hr />
+
+							<h2>Project Overview</h2>
+							<p>The Last Crusade is a 2D top-down RPG that merges traditional turn-based strategy with engaging Quick Time Event (QTE) mechanics. Thanks to its cohesive design and highly interactive core loop, the project was awarded <strong>"Best 2D Game"</strong> at the Universidad San Jorge Game of the Year Gala during its initial development phase. The player explores a map, battling enemies, interacting with chests to upgrade their arsenal, and resting at bonfires to save progress and level up. Combat encounters challenge the player to manage a delicate economy of HP and stamina, rewarding precise inputs and strategic decision-making to survive and grow stronger.</p>
+
+							<hr />
+
+							<h2>The Combat System & Stamina Economy</h2>
+							<p>Combat revolves around a dynamic stamina economy and real-time QTEs. Each turn, combatants choose between three stances:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Attack:</strong> Engages the enemy using directional QTEs. Successful inputs boost attack power and charge a devastating, unblockable finishing move triggered after four consecutive successes. Attacks drain stamina, and the only way to disengage safely is by executing the finisher.</li>
+								<li><strong>Defend:</strong> Prepares for an incoming attack. The player must successfully execute QTEs to block at the cost of stamina. Failing the QTE or lacking stamina results in direct HP loss. Successfully blocking four consecutive attacks allows the player to unleash a powerful counter-finisher that halts the enemy's assault.</li>
+								<li><strong>Rest:</strong> Restores one-third of the character's maximum stamina. However, resting leaves the character highly vulnerable; if attacked while resting, the first incoming strike deals drastically increased damage.</li>
+							</ul>
+							<p>The system forces players to constantly evaluate risk versus reward: push for a four-hit combo finisher to deal massive damage, or play defensively to exhaust the opponent's stamina pool.</p>
+
+							<hr />
+
+							<h2>My Contributions & Technical Implementation</h2>
+							<p>As a core gameplay programmer on a team of four, my responsibilities spanned both systems engineering and foundational game design:</p>
+							<ul style="text-align: justify;">
+                                <li><strong>Combat Systems Design:</strong> Conceptualized and designed the stamina-based economy and directional QTE mechanics from the ground up. I prototyped the initial combat loop, which proved engaging, so the team ultimately built the rest of the overarching RPG structure around it.</li>
+								<li><strong>State Machine Architecture:</strong> Engineered the core combat loop using a robust Finite State Machine (FSM). This cleanly separated the logic for the overarching turn-based phases, the real-time QTE input windows, and the complex clash states required when both entities decide to attack in the same turn.</li>
+								<li><strong>Utility-Based AI:</strong> Programmed a dynamic, utility-driven AI for the enemies. Rather than following a rigid script, the AI continuously evaluates its current stamina pool, the player's stamina pool, and the current combat phase to dynamically choose whether to Attack, Defend, or Rest.</li>
+								<li><strong>User Interface & Game Feel:</strong> Developed the combat UI, tightly coupling the visual feedback to the underlying state machine. Implemented smooth interpolation for the HP and stamina bars, and programmed the real-time visual prompts required for the QTE combo and unblockable finisher systems.</li>
+							</ul>
+
+							<hr />
+
+							<h2>Future Roadmap & Next Steps</h2>
+							<p>Although <em>The Last Crusade</em> is already a highly polished prototype, the team is actively continuing development with clear commercial milestones in mind:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Combat Complexity:</strong> We are currently prototyping new combat mechanics to deepen the stamina economy. The goal is to raise the skill ceiling, introducing more tactical counter-play and making the moment-to-moment combat even more engaging.</li>
+								<li><strong>Expanded Arsenal & Items:</strong> To complement the updated combat mechanics, we plan to implement a broader variety of weapons and consumable items. These will introduce distinct stat-scaling modifiers and unique attack timings to encourage diverse player builds.</li>
+								<li><strong>Interactive Tutorial:</strong> Because the Attack/Defend/Rest stamina triangle and directional QTE inputs are highly unconventional for a turn-based RPG, we are engineering a seamless, interactive tutorial to properly onboard players without overwhelming them.</li>
+								<li><strong>Polish & Publishing:</strong> Once the new feature set is complete, the final phase will involve rigorous playtesting to balance the RPG stat mathematics and enemy difficulty curves. Our ultimate goal is to apply a final layer of polish and publish the game on a major digital storefront.</li>
+							</ul>
+
+							<div class="pagination" style="justify-content: space-between; display: flex; width: 100%; margin-top: 4rem;">
+								<a href="oceanSimulation.html" class="previous">Previous Project</a>
+								<a href="idleCrimes.html" class="next">Next Project</a>
+							</div>
+						</section>
+
+					</div>
+
+				<footer id="footer">
+						<section class="split contact" style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap;">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:jokinoteiza@gmail.com">jokinoteiza@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Location</h3>
+								<p>Iruña, Nafarroa</p>
+							</section>
+							<section>
+								<h3>Social Profiles</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Jokin110" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<div id="copyright">
+						<ul><li>&copy; Jokin Oteiza Ollo</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -4687,3 +4687,254 @@ input, select, textarea {
 		}
 
 	}
+
+	/* ========================================== */
+	/* Custom Scroll Dropdown Menu for Desktop    */
+	/* ========================================== */
+
+	@media screen and (min-width: 981px) {
+		/* 1. Show the hamburger toggle when scrolled past the main nav */
+		body.is-nav-scrolled #navPanelToggle {
+			display: block !important;
+			background-color: rgba(255, 255, 255, 0.875);
+			box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
+			color: #212931;
+		}
+		
+		body.is-nav-scrolled #navPanelToggle:hover {
+			background-color: #ffffff;
+		}
+		
+		/* 2. Ensure the panel exists in the layout so it CAN slide in */
+		body.is-nav-scrolled #navPanel {
+			display: block !important;
+		}
+
+		/* 3. Apply the slide-in animations on desktop when the button is clicked */
+		body.is-navPanel-visible #navPanel {
+			transform: translateX(0);
+			box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.2);
+			visibility: visible;
+			display: block !important;
+		}
+		
+		/* 4. Dim the background wrapper when the menu is open */
+		body.is-navPanel-visible #wrapper {
+			opacity: 0.5;
+		}
+	}
+
+	/* ========================================== */
+	/* Tech Tags Custom Styling & Alignment       */
+	/* ========================================== */
+
+	ul.tech-tags {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-wrap: nowrap; /* FORCES tags to stay on a single line */
+		justify-content: center;
+		align-items: center;
+		gap: 0.4rem;
+		margin: 0 0 1.5rem 0;
+		width: 100%;
+		overflow: hidden; /* Prevents container from breaking grid */
+	}
+
+	ul.tech-tags li {
+		background: rgba(24, 191, 239, 0.05); 
+		color: #18bfef;
+		padding: 0.3rem 0.65rem;
+		border-radius: 2rem;
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: clamp(0.55rem, 1vw, 0.75rem); /* Shrinks text slightly on smaller screens */
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		border: 1px solid rgba(24, 191, 239, 0.3);
+		margin: 0; 
+		white-space: nowrap; /* Prevents text inside the tag from wrapping */
+		overflow: hidden;
+		text-overflow: ellipsis; /* Adds '...' if the tag gets squished too much */
+		flex-shrink: 1; /* Allows the pill to dynamically compress to fit the line */
+	}
+
+	/* ========================================== */
+	/* Perfect Grid Alignment & Image Framing     */
+	/* ========================================== */
+
+	/* 1. Universal Image Container (16:9 Frame, No Border) */
+	a.project-card {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background-color: #f4f4f4 !important; /* Soft background for narrow images */
+		border: none !important; /* Removed the border */
+		border-radius: 4px !important;
+		margin: 0 0 2rem 0 !important;
+		position: relative;
+		overflow: hidden; 
+		display: block;
+	}
+
+	/* 2. Images fit vertically, crop/space horizontally natively (Fixes 1px noise) */
+	a.project-card .static-img,
+	a.project-card .gif-img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100% !important; 
+		height: 100% !important; 
+		object-fit: cover !important;
+		object-position: center !important;
+		transform: none !important; /* Removed fractional pixel translation */
+	}
+
+	/* 3. STRICT FLEX COLUMN: Do NOT touch widths, only internal layout */
+	#main > .posts > article {
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	/* 4. Force titles to scale smoothly and NEVER wrap */
+	#main > .posts > article header {
+		width: 100%;
+	}
+
+	#main > .posts > article header h2 {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: clamp(1.1rem, 2.2vw, 1.5rem); 
+		width: 100%;
+	}
+
+	/* 5. HARD LOCK buttons to the absolute bottom */
+	#main > .posts > article .actions.special {
+		margin-top: auto !important; 
+	}
+
+	/* ========================================== */
+	/* Custom Video Hover Transitions & Zoom Fix  */
+	/* ========================================== */
+
+	.project-card .gif-img {
+		opacity: 0; 
+		z-index: 1;
+		transition: opacity 0.5s ease-out; 
+	}
+
+	.project-card:hover .gif-img {
+		opacity: 1;
+		transition: opacity 0s; 
+	}
+	
+	/* Prevent the native template zoom from breaking our images */
+	a.project-card:hover img.static-img,
+	a.project-card:hover video.gif-img {
+		-moz-transform: none !important;
+		-webkit-transform: none !important;
+		-ms-transform: none !important;
+		transform: none !important; /* Removed scale and translation */
+	}
+
+	/* ========================================== */
+	/* Project Details Page Video Frame           */
+	/* ========================================== */
+
+	.details-video-frame {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background-color: #f4f4f4; 
+		border-radius: 4px;
+		margin: 0 0 2rem 0;
+		position: relative;
+		overflow: hidden; 
+		display: block;
+	}
+
+	.details-video-frame video {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%; 
+		height: 100%; 
+		object-fit: cover; /* Ensures perfect 16:9 crop with no 1px borders */
+		object-position: center;
+	}
+
+	/* Ensure all paragraphs and list items inside posts are strictly justified */
+	#main > .post p, 
+	#main > .post ul li {
+		text-align: justify !important;
+	}
+
+	/* ========================================== */
+	/* Project Details Page Video Captions        */
+	/* ========================================== */
+
+	#main > .post p.video-caption {
+		font-size: 0.85rem !important;
+		font-style: italic;
+		text-align: center !important; /* Overrides the global justify */
+		color: #636668; /* Gives it a softer, muted grey tone */
+		margin-top: -1.5rem !important; /* Pulls it up tight against the video frame */
+		margin-bottom: 3rem !important; /* Adds healthy breathing room before the next section */
+		line-height: 1.6;
+		width: 100%;
+	}
+
+	/* ========================================== */
+	/* Screenshot Carousel for Mobile Games       */
+	/* ========================================== */
+
+	.screenshot-carousel {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		gap: 1.5rem;
+		padding-bottom: 1.5rem;
+		margin-bottom: 3rem;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: thin;
+		scrollbar-color: #18bfef #f4f4f4;
+		cursor: grab; 
+		
+		/* NEW: Prevents the blue text/image selection highlight while dragging */
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none; 
+	}
+
+	.screenshot-carousel:active {
+		cursor: grabbing; /* Changes cursor when clicked */
+	}
+
+	.screenshot-carousel.is-dragging {
+		scroll-snap-type: none; /* Disables snapping while dragging for smoothness */
+	}
+
+	.screenshot-carousel::-webkit-scrollbar {
+		height: 10px;
+	}
+
+	.screenshot-carousel::-webkit-scrollbar-track {
+		background: #f4f4f4;
+		border-radius: 6px;
+	}
+
+	.screenshot-carousel::-webkit-scrollbar-thumb {
+		background-color: #18bfef;
+		border-radius: 6px;
+	}
+
+	.screenshot-carousel img {
+		scroll-snap-align: center;
+		height: 450px; 
+		width: auto;
+		border-radius: 8px;
+		box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+		border: 1px solid #eeeeee;
+		flex-shrink: 0;
+		pointer-events: none; /* CRITICAL: Stops the browser's default "ghost image" drag */
+	}
