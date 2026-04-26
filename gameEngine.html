@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Custom 2D Game Engine - Jokin Oteiza Ollo</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%2318bfef' d='M480 128H32C14.33 128 0 142.3 0 160v192c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32V160C512 142.3 497.7 128 480 128zM144 288h-32v32c0 8.836-7.164 16-16 16s-16-7.164-16-16v-32H48c-8.836 0-16-7.164-16-16s7.164-16 16-16h32v-32c0-8.836 7.164-16 16-16s16 7.164 16 16v32h32c8.836 0 16 7.164 16 16S152.8 288 144 288zM352 288c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S369.7 288 352 288zM432 224c-17.67 0-32-14.33-32-32s14.33-32 32-32s32 14.33 32 32S449.7 224 432 224z'/%3E%3C/svg%3E" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+
+				<header id="header">
+						<a href="index.html" class="logo">Back to Portfolio</a>
+					</header>
+
+				<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="about.html">About Me</a></li>
+							<li><a href="assets/CV-JokinOteizaOllo.pdf" target="_blank">Resume (PDF)</a></li>
+							<li class="active"><a href="#">Custom 2D Game Engine</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Jokin110" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<div id="main">
+
+						<section class="post">
+							<header class="major">
+								<span class="date">October 2023 - January 2024</span>
+								<h1>Custom 2D Game Engine</h1>
+								<ul class="tech-tags">
+									<li>C++</li>
+									<li>Visual Studio</li>
+									<li>SDL2</li>
+									<li>Multithreading</li>
+								</ul>
+							</header>
+
+							<div class="image fit project-card" style="margin-bottom: 2rem;">
+								<img src="images/EngineDesign.png" alt="Custom 2D Game Engine Architecture Diagram" />
+							</div>
+							<p class="video-caption">Architectural overview of the custom engine, detailing the strict decoupling between the underlying hardware abstraction (SDL2), the multithreaded core managers and the event-driven gameplay layer.</p>
+
+							<ul class="actions fit">
+								<li><a href="https://github.com/Jokin110/GameEngine" class="button fit">View Source Code</a></li>
+							</ul>
+
+							<hr />
+
+							<h2>Project Overview</h2>
+							<p>To deepen my understanding of low-level systems architecture and game loops, I engineered a custom 2D game engine entirely from scratch using C++ and the SDL2 library. Rather than relying on out-of-the-box solutions, I built my own memory managers, a custom deterministic physics solver, an entity-component style object hierarchy, and a multithreaded rendering pipeline. To validate the engine's capabilities, I developed two simple games on top of it: a local multiplayer Pong clone and an infinite runner featuring dynamic time-scaling.</p>
+							
+							<hr />
+
+							<h2>Architecture & Core Systems</h2>
+							<p>The engine is built upon a robust <code>Singleton</code> template design pattern, allowing global access to critical managers while strictly controlling their construction and memory allocation lifecycles:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Entity-Object Framework:</strong> Designed an <code>Object</code> base class acting as the foundation for all game entities. It abstracts the complexity of translation, scale, pivot-point mathematics, and sprite rendering. It also exposes a Unity-style event lifecycle (<code>Start</code>, <code>Update</code>, <code>OnCollisionEnter</code>), making gameplay programming intuitive.</li>
+								<li><strong>Multithreaded Engine Loop:</strong> Implemented a <code>SDL_Thread</code> architecture that explicitly separates the heavy logic updates from the <code>GraphicManager</code>'s rendering loop. Thread synchronization is handled via <code>SDL_mutex</code>, ensuring data integrity without causing rendering bottlenecks.</li>
+								<li><strong>Input Abstraction:</strong> The <code>InputManager</code> wraps SDL's raw hardware events into a highly queryable interface. It supports simultaneous keyboard, mouse, and gamepads, automatically calculating controller dead-zones and providing boolean checks for <code>GetKeyDown</code> and <code>GetKeyUp</code> states.</li>
+								<li><strong>Data Serialization:</strong> Engineered a custom <code>SaveManager</code> for persistent data storage. It parses and writes structured key-value pairs (Integers, Floats, Strings) directly to local text files, used for tracking high scores across play sessions.</li>
+							</ul>
+
+							<hr />
+
+							<h2>Included Game Modules: Proving the Architecture</h2>
+							<p>To validate the engine's scalability and prove that the underlying architecture is practical for actual game development, I built two distinct, fully playable games natively on top of the framework:</p>
+							<ul style="text-align: justify;">
+								<li><strong>Local Multiplayer Pong:</strong> This module acts as the primary stress test for the physics and rendering systems. It leverages the custom physics solver to resolve complex Circle-Square collisions between the ball and the paddles. It heavily utilizes the Input abstraction, simultaneously mapping independent keyboard keys and Gamepad axes to different local players. Additionally, it routes music and sound effects through the audio wrapper, and dynamically updates on-screen UI text elements as the score changes.</li>
+								<li><strong>Infinite Runner:</strong> This module was built to test data persistence and time manipulation. It utilizes AABB trigger volumes to detect when the player is grounded or has hit a fatal obstacle. Upon triggering a game-over state, it hooks into the Time system to set the global time-scale to zero, instantly freezing all game logic. Finally, it relies on the custom data serialization manager to read and write the player's high score to a local text file, tracking progress persistently across multiple sessions.</li>
+							</ul>
+
+							<hr />
+
+							<h2>Core Implementation Highlight: Physics & Collisions</h2>
+							<p>The <code>CollisionManager</code> is arguably the most complex system in the engine. It continuously evaluates an array of dynamic colliders (AABB Rectangles and Circles), mathematically calculating intersections such as Circle-Square overlap using closest-point bounding logic.</p>
+                            <p>Crucially, it distinguishes between "solid" collisions and "triggers". When a solid collision is detected, the engine calculates the penetration depth and calls an <code>UndoMovement</code> function to forcefully clamp the object back to the exact pixel edge of the colliding surface, effectively preventing overlapping or tunneling.</p>
+
+							<pre><code class="language-cpp">void Object::UndoMovement(Collider* _myCollider, Collider* _other)
+{
+    if (_myCollider->GetIsSquare() && _other->GetIsSquare())
+    {
+        // Calculate penetration delta based on the previous frame's position 
+        // and clamp the current position to the exact edge of the opposing collider.
+        if (pos.GetX() > prevPos.GetX())
+        {
+            pos = Vector2(Clamp(prevPos.GetX(), pos.GetX(), _other->GetParent()->GetXWithoutPivot() + _other->GetLeftX() - _myCollider->GetRightX() + (pos.GetX() - GetXWithoutPivot())), pos.GetY());
+        }
+        else if (pos.GetX() < prevPos.GetX())
+        {
+            pos = Vector2(Clamp(pos.GetX(), prevPos.GetX(), _other->GetParent()->GetXWithoutPivot() + _other->GetRightX() - _myCollider->GetLeftX() + (pos.GetX() - GetXWithoutPivot())), pos.GetY());
+        }
+
+        // Repeat clamping logic for the Y-Axis
+        if (pos.GetY() > prevPos.GetY())
+        {
+            pos = Vector2(pos.GetX(), Clamp(prevPos.GetY(), pos.GetY(), _other->GetParent()->GetYWithoutPivot() + _other->GetTopY() - _myCollider->GetBottomY() + (pos.GetY() - GetYWithoutPivot())));
+        }
+        else if (pos.GetY() < prevPos.GetY())
+        {
+            pos = Vector2(pos.GetX(), Clamp(pos.GetY(), prevPos.GetY(), _other->GetParent()->GetYWithoutPivot() + _other->GetBottomY() - _myCollider->GetTopY() + (pos.GetY() - GetYWithoutPivot())));
+        }
+    }
+    else
+    {
+        // Fallback for non-square solid collisions
+        pos = prevPos;
+    }
+}</code></pre>
+
+                            <p>After resolving the physics, the manager evaluates historical state tracking (comparing the <code>collidingBefore</code> array against the <code>collidingWith</code> array) to dynamically call the correct event hooks to the object, mimicking the functionality of commercial game engines.</p>
+
+							<pre><code class="language-cpp">if (collisionDetected)
+{
+    // Log the current collision state
+    colliders[i]->GetCollidingWith()->push_back(colliders[j]);
+    colliders[j]->GetCollidingWith()->push_back(colliders[i]);
+
+    // Physically resolve the collision if neither is a trigger
+    if (!colliders[i]->isTrigger() && !colliders[j]->isTrigger())
+    {
+        colliders[i]->GetParent()->UndoMovement(colliders[i], colliders[j]);
+        colliders[j]->GetParent()->UndoMovement(colliders[j], colliders[i]);
+    }
+
+    // Evaluate state history to call Enter vs Stay events
+    if (!colliders[i]->CollidingBeforeIncludes(colliders[j]))
+    {
+        if (!colliders[i]->isTrigger() && !colliders[j]->isTrigger())
+            colliders[i]->GetParent()->OnCollisionEnter(colliders[j]);
+        else
+            colliders[i]->GetParent()->OnTriggerEnter(colliders[j]);
+    }
+    else
+    {
+        if (!colliders[i]->isTrigger() && !colliders[j]->isTrigger())
+            colliders[i]->GetParent()->OnCollisionStay(colliders[j]);
+        else
+            colliders[i]->GetParent()->OnTriggerStay(colliders[j]);
+    }
+}</code></pre>
+
+							<div class="pagination" style="justify-content: space-between; display: flex; width: 100%; margin-top: 4rem;">
+								<a href="anima.html" class="previous">Previous Project</a>
+								<a href="oceanSimulation.html" class="next">Next Project</a>
+							</div>
+						</section>
+
+					</div>
+
+				<footer id="footer">
+						<section class="split contact" style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap;">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:jokinoteiza@gmail.com">jokinoteiza@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Location</h3>
+								<p>Iruña, Nafarroa</p>
+							</section>
+							<section>
+								<h3>Social Profiles</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/jokin-oteiza-ollo-7808263a1/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/Jokin110" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<div id="copyright">
+						<ul><li>&copy; Jokin Oteiza Ollo</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+	</body>
+</html>

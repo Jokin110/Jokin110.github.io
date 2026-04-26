@@ -4938,3 +4938,66 @@ input, select, textarea {
 		flex-shrink: 0;
 		pointer-events: none; /* CRITICAL: Stops the browser's default "ghost image" drag */
 	}
+
+	/* ========================================== */
+	/* Nav Menu Desktop Resolution Fix (1366px)   */
+	/* ========================================== */
+
+	@media screen and (min-width: 981px) and (max-width: 1440px) {
+		/* Shrink padding and font size slightly to fit all links */
+		#nav > .links > li > a {
+			padding: 0 1rem !important; 
+			font-size: 0.75rem !important; 
+		}
+
+		/* If the project title is STILL too long, truncate it elegantly with "..." */
+		#nav > .links > li {
+			max-width: 25vw; /* Prevents the active tab from hoarding space */
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		/* Explicitly protect the social icons from being pushed off-screen */
+		#nav > .icons {
+			display: flex !important;
+			flex-shrink: 0; 
+		}
+	}
+
+	/* ========================================== */
+	/* Mobile Pagination Button Fix               */
+	/* ========================================== */
+
+	@media screen and (max-width: 736px) {
+		/* Stack the pagination buttons vertically on mobile for better UX */
+		.post .pagination {
+			flex-direction: column !important;
+			gap: 1.5rem !important;
+		}
+
+		/* Override the fixed heights and let them expand dynamically */
+		.post .pagination a.previous,
+		.post .pagination a.next {
+			width: 100% !important;
+			height: auto !important; 
+			min-height: 3.5rem !important;
+			padding: 1rem 1.5rem !important; 
+			white-space: normal !important; /* Allows the text to break to a new line */
+			
+			/* Flexbox perfectly centers the text and the arrows */
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			line-height: 1.4 !important;
+		}
+	}
+
+	/* ========================================== */
+	/* Remove Date Decorative Line                */
+	/* ========================================== */
+
+	#main > .post header.major .date::before,
+	#main > .post header.major .date::after {
+		display: none !important; 
+	}
