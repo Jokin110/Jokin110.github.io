@@ -4969,27 +4969,51 @@ input, select, textarea {
 	/* Mobile Pagination Button Fix               */
 	/* ========================================== */
 
+	/* ========================================== */
+	/* Mobile Pagination Button Fix               */
+	/* ========================================== */
+
 	@media screen and (max-width: 736px) {
-		/* Stack the pagination buttons vertically on mobile for better UX */
+		/* Stack the pagination buttons vertically on mobile */
 		.post .pagination {
 			flex-direction: column !important;
 			gap: 1.5rem !important;
 		}
 
-		/* Override the fixed heights and let them expand dynamically */
+		/* Global button layout: perfectly centered vertically and horizontally */
 		.post .pagination a.previous,
 		.post .pagination a.next {
 			width: 100% !important;
 			height: auto !important; 
-			min-height: 3.5rem !important;
+			min-height: 4rem !important;
 			padding: 1rem 1.5rem !important; 
-			white-space: normal !important; /* Allows the text to break to a new line */
-			
-			/* Flexbox perfectly centers the text and the arrows */
+			white-space: normal !important; 
 			display: flex !important;
 			align-items: center !important;
-			justify-content: center !important;
+			justify-content: center !important; /* Groups text and arrow tightly in the center */
+			text-align: center !important; 
 			line-height: 1.4 !important;
+		}
+
+		/* Keep "Previous" layout normal (Icon Left, Text Right) */
+		.post .pagination a.previous {
+			flex-direction: row !important;
+		}
+
+		/* Flip "Next" layout so the icon moves to the end (Text Left, Icon Right) */
+		.post .pagination a.next {
+			flex-direction: row-reverse !important; 
+		}
+
+		/* Neat spacing between the text and the icons */
+		.post .pagination a.next::before {
+			margin-left: 1rem !important;
+			margin-right: 0 !important;
+		}
+
+		.post .pagination a.previous::before {
+			margin-right: 1rem !important;
+			margin-left: 0 !important;
 		}
 	}
 
