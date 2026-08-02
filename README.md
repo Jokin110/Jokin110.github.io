@@ -10,6 +10,7 @@ This repository hosts the source code for my professional web portfolio, showcas
 ## 🛠️ Featured Projects
 The portfolio includes detailed technical breakdowns, code snippets and demonstrations of my core projects:
 * **FFT Ocean Simulation:** A real-time ocean surface simulation built natively using DirectX 11, HLSL and Compute Shaders.
+* **2D Football Match Engine:** A multithreaded football management simulation built in Unity and C#, featuring autonomous Utility-Based AI agents and HLSL compute shaders for massively parallel spatial heuristics.
 * **The Last Crusade:** A 2D top-down RPG featuring a custom stamina economy and utility-based AI.
 * **Idle Crimes Tycoon:** A commercially published mobile management game built in Unity and C#.
 * **Anima:** An award-winning 2D platformer with dynamic AI and environmental mechanics tied to player health.

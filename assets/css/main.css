@@ -5025,3 +5025,20 @@ input, select, textarea {
 	#main > .post header.major .date::after {
 		display: none !important; 
 	}
+
+	/* ========================================== */
+	/* Scaled & Centered Project Images           */
+	/* ========================================== */
+
+	.image.fit.project-card.scaled {
+		max-width: 60%; /* Restricts the image to 60% of the page width */
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	/* Ensures the image doesn't get too tiny on mobile screens */
+	@media screen and (max-width: 736px) {
+		.image.fit.project-card.scaled {
+			max-width: 90%; 
+		}
+	}
